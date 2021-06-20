@@ -7,7 +7,7 @@ A Simple Full Stack REST API based App built with NestJS and Prisma ORM.
 ## Installation
 
 ```sh
-npm install
+$ npm install
 ```
 
 ## Running the app
