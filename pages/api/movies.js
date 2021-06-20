@@ -4,7 +4,7 @@ const { movie: Movie } = new PrismaClient();
 
 export default async (req, res) => {
   switch (req.method) {
-    case "GET":
+    case "POST":
       const data = JSON.parse(req.body);
 
       const newMovie = await Movie.create({ data });
