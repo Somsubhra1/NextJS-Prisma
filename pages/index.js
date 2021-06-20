@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
-import Link from "next/link";
+import MovieList from "../components/MovieList";
 
 const { movie: Movie } = new PrismaClient();
 
@@ -32,19 +32,7 @@ export default function Home({ data }) {
       </Head>
 
       <main className={styles.main}>
-        <ul className={styles.movielist}>
-          {movies.map((item) => (
-            <li key={item.id}>
-              <span>
-                <strong>{item.title}</strong>
-              </span>
-              <span>{item.year}</span>
-              <span>{item.description}</span>
-              <Link href={`/movies/${item.slug}`}>More about this movie</Link>
-            </li>
-          ))}
-        </ul>
-
+        <MovieList movies={movies} />
         <form className={styles.movieform} onSubmit={saveMovie}>
           <input
             type="text"
