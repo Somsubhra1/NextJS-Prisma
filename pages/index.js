@@ -3,26 +3,13 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { useState } from "react";
 import MovieList from "../components/MovieList";
+import AddMovie from "../components/AddMovie";
 
 const { movie: Movie } = new PrismaClient();
 
 export default function Home({ data }) {
-  const [formData, setFormData] = useState({});
-
   const [movies, setMovies] = useState(data);
 
-  const saveMovie = async (e) => {
-    e.preventDefault();
-    setMovies([...movies, formData]);
-    const response = await fetch("/api/movies", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
-
-    setFormData({});
-
-    return await response.json();
-  };
   return (
     <div className={styles.container}>
       <Head>
@@ -33,41 +20,7 @@ export default function Home({ data }) {
 
       <main className={styles.main}>
         <MovieList movies={movies} />
-        <form className={styles.movieform} onSubmit={saveMovie}>
-          <input
-            type="text"
-            placeholder="Title"
-            name="title"
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Year"
-            name="year"
-            onChange={(e) =>
-              setFormData({ ...formData, year: +e.target.value })
-            }
-          />
-          <textarea
-            name="description"
-            id=""
-            cols="30"
-            rows="10"
-            placeholder="Description"
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            placeholder="Slug"
-            name="slug"
-            onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-          />
-          <button type="submit">Add movie</button>
-        </form>
+        <AddMovie setMovies={setMovies} movies={movies} />
       </main>
     </div>
   );
