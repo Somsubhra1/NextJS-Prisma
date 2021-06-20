@@ -8,9 +8,14 @@ const { movie: Movie } = new PrismaClient();
 export default function Home({ data }) {
   const [formData, setFormData] = useState({});
 
-  const saveMovie = (e) => {
+  const saveMovie = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    const response = await fetch("/api/movies", {
+      method: "POST",
+      body: JSON.stringify(formData),
+    });
+
+    return await response.json();
   };
   return (
     <div className={styles.container}>
