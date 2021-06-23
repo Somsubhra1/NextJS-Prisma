@@ -1,8 +1,8 @@
-# NestJS Prisma
+# NextJS Prisma
 
 ## Description
 
-A Simple Full Stack REST API based App built with NestJS and Prisma ORM.
+A Simple Full Stack REST API based App built with NextJS and Prisma ORM.
 
 ## Installation
 
